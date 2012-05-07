@@ -18,11 +18,6 @@ enum nodeTags
     kKnifeTag,
 };
 
-enum layerTags
-{
-    HUDLayerTags,
-};
-
 
 @interface GameScene : CCLayer <CCLayerPanZoomClickDelegate> {
     
@@ -34,6 +29,8 @@ enum layerTags
 
 
 +(CCScene *) scene;
+
+-(id) initWithHUD:(HUDLayer*)hud;
 
 
 @end

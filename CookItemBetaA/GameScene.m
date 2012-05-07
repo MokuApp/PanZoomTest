@@ -14,14 +14,19 @@
 +(CCScene *) scene
 {
 	CCScene *scene = [CCScene node];
-	GameScene *layer = [GameScene node];	
+	HUDLayer *hud = [HUDLayer node];
+    [scene addChild:hud z:10];
+    
+    GameScene *layer = [[[GameScene alloc] initWithHUD:hud] autorelease];
 	[scene addChild: layer];
+    
 	return scene;
 }
 
--(id) init
+-(id) initWithHUD:(HUDLayer*)hud
 {
 	if( (self=[super init])) {
+        _hud = hud;
 
         CCLayerColor* whiteLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
         [self addChild:whiteLayer z:-1];
@@ -129,6 +134,14 @@
     
     _selectedObject.position = newPos;
     [self droppedObjectAtPoint:[_selectedObject boundingBox]];
+    if (_droppedObject) {
+        if (![_hud isCall]) {
+            [_hud showMenuList:newPos];            
+        }
+
+    }
+
+
 }
 
 - (void) layerPanZoom: (CCLayerPanZoom *) sender 

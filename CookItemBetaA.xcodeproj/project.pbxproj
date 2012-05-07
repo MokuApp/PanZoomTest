@@ -127,6 +127,8 @@
 		35087778155534DB0020E844 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35087777155534DB0020E844 /* GameScene.m */; };
 		3508777B155535500020E844 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3508777A155535500020E844 /* CCLayerPanZoom.m */; };
 		3508777E1556608C0020E844 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3508777D1556608C0020E844 /* HUDLayer.m */; };
+		3508778715567CF80020E844 /* bitmapfont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 3508778515567CF80020E844 /* bitmapfont.fnt */; };
+		3508778815567CF80020E844 /* bitmapfont.png in Resources */ = {isa = PBXBuildFile; fileRef = 3508778615567CF80020E844 /* bitmapfont.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -372,6 +374,8 @@
 		3508777A155535500020E844 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		3508777C1556608B0020E844 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
 		3508777D1556608C0020E844 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
+		3508778515567CF80020E844 /* bitmapfont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bitmapfont.fnt; path = Resources/bitmapfont.fnt; sourceTree = "<group>"; };
+		3508778615567CF80020E844 /* bitmapfont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bitmapfont.png; path = Resources/bitmapfont.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +453,8 @@
 		35087610155533850020E844 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3508778515567CF80020E844 /* bitmapfont.fnt */,
+				3508778615567CF80020E844 /* bitmapfont.png */,
 				35087772155534390020E844 /* garlic.png */,
 				35087773155534390020E844 /* knife.png */,
 				35087770155534170020E844 /* garlicCutA.png */,
@@ -840,6 +846,8 @@
 				35087771155534170020E844 /* garlicCutA.png in Resources */,
 				35087774155534390020E844 /* garlic.png in Resources */,
 				35087775155534390020E844 /* knife.png in Resources */,
+				3508778715567CF80020E844 /* bitmapfont.fnt in Resources */,
+				3508778815567CF80020E844 /* bitmapfont.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,10 +10,12 @@
 #import "cocos2d.h"
 
 @interface HUDLayer : CCLayer {
+    BOOL _call;
     
 }
 
--(void)showMenuList;
+-(BOOL)isCall;
+-(void)showMenuList:(CGPoint)pos;
 -(void)hideMenuList;
 
 @end
