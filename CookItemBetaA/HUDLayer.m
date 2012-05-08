@@ -7,7 +7,8 @@
 //
 
 #import "HUDLayer.h"
-
+#import "CCLayerPanZoom.h"
+#import "GameScene.h"
 
 @implementation HUDLayer
 
@@ -25,25 +26,19 @@
 -(void)showMenuList:(CGPoint)pos
 {
     
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-//    CCLabelBMFont *menuLabel = [CCLabelBMFont labelWithString:@"123" fntFile:@"bitmapfont.fnt"];
-//    CCLabelTTF *menuLabel = [CCLabelTTF labelWithString:@"Cut" fontName:@"Arial" fontSize:16];
-    
+//    CGSize winSize = [CCDirector sharedDirector].winSize;
+//    CCLabelBMFont *menuLabel = [CCLabelBMFont labelWithString:@"123" fntFile:@"bitmapfont.fnt"];    
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"Cut" fontName:@"Arial" fontSize:16];
     label.color = ccc3(128, 128, 128);
- //   label.position = pos;//ccp(winSize.width / 2, winSize.height / 2);
 
-   // [self addChild:label z:10];
-    
     CCMenuItemLabel *menuItem = [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(hideMenuList:)];
-//    menuItem.position = pos;
-    
-//    CCMenuItem *menuItem = [CCMenuItemImage itemFromNormalImage:@"Icon-72.png" selectedImage:@"Icon-72.png"];
     menuItem.position = pos;
-    CCMenu *menu = [CCMenu menuWithItems:menuItem, nil];
-    menu.position = CGPointZero;//ccp(winSize.width / 2, winSize.height / 2);//pos;
-    [self addChild:menu];
 
+    CCMenu *menu = [CCMenu menuWithItems:menuItem, nil];
+    menu.position = CGPointZero;
+
+    [self addChild:menu z:10 tag:kMenuTag];
+    
     _call = YES;
     
 }
@@ -51,8 +46,23 @@
 -(void)hideMenuList:(id)sender
 {
     
-//    CCLabelTTF *_label = (CCLabelTTF *)[self getChildByTag: 5];
- //   [self removeChildByTag:5 cleanup:YES];
+//    CCMenu *_menu = (CCMenu *)[self getChildByTag: kMenuTag];
+    [self removeChildByTag:kMenuTag cleanup:YES];
+//    [self.parent getChildByTag:kKnifeTag];
+//    [[GameScene sharedGameScene] removeChildByTag:1 cleanup:YES];
+    CCLayerPanZoom *tmpLayer = (CCLayerPanZoom*)[[GameScene sharedGameScene] getChildByTag:kPanzoomTag];
+    CCSprite *tmpG = (CCSprite*)[tmpLayer getChildByTag:kGarlicTag];
+    
+    
+    CGPoint gPos = tmpG.position;
+    [tmpLayer removeChildByTag:kGarlicTag cleanup:YES];
+    
+    CCSprite *garlic = [CCSprite spriteWithFile: @"garlicCutA.png"];
+    [tmpLayer addChild: garlic 
+                          z: 1 
+                        tag: kGarlicTag];
+    garlic.position =  gPos;
+    
     _call = NO;
     
 }

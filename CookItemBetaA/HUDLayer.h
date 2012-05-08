@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+@class GameScene;
+
+enum menuTags
+{
+	kMenuTag,
+};
 
 @interface HUDLayer : CCLayer {
     BOOL _call;
@@ -16,6 +22,6 @@
 
 -(BOOL)isCall;
 -(void)showMenuList:(CGPoint)pos;
--(void)hideMenuList;
+-(void)hideMenuList:(id)sender;
 
 @end

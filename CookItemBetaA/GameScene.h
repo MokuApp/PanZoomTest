@@ -9,13 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CCLayerPanZoom.h"
-#import "HUDLayer.h"
+
+@class HUDLayer;
 
 enum nodeTags
 {
 	kBackgroundTag,
     kGarlicTag,
     kKnifeTag,
+};
+
+enum layerTags
+{
+    kPanzoomTag,
 };
 
 
@@ -29,6 +35,7 @@ enum nodeTags
 
 
 +(CCScene *) scene;
++(GameScene*) sharedGameScene;
 
 -(id) initWithHUD:(HUDLayer*)hud;
 

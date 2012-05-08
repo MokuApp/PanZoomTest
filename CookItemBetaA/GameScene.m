@@ -7,9 +7,19 @@
 //
 
 #import "GameScene.h"
+#import "HUDLayer.h"
 
 
 @implementation GameScene
+
+static GameScene* instanceOfGameScene;
+
++(GameScene*)sharedGameScene
+{
+    NSAssert(instanceOfGameScene != nil, @"GameScen instance not yet initialized");
+    return instanceOfGameScene;
+
+}
 
 +(CCScene *) scene
 {
@@ -26,13 +36,14 @@
 -(id) initWithHUD:(HUDLayer*)hud
 {
 	if( (self=[super init])) {
+        instanceOfGameScene = self;
         _hud = hud;
 
         CCLayerColor* whiteLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
         [self addChild:whiteLayer z:-1];
 	
         _panZoomLayer = [[CCLayerPanZoom node] retain];
-        [self addChild:_panZoomLayer];
+        [self addChild:_panZoomLayer z:0 tag:kPanzoomTag];
         _panZoomLayer.delegate = self;
         
         
@@ -136,11 +147,11 @@
     [self droppedObjectAtPoint:[_selectedObject boundingBox]];
     if (_droppedObject) {
         if (![_hud isCall]) {
-            [_hud showMenuList:newPos];            
+            CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
+            [_hud showMenuList:_knife.position];            
         }
 
     }
-
 
 }
 
