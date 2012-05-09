@@ -64,6 +64,7 @@ enum nodeTags
 
 - (void) draw
 {
+    /*
     glColor4f(1.0f, 0.0f, 0.0f, 1.0);
     glLineWidth(2.0f);    
     ccDrawLine(ccp(self.leftFrameMargin, 0.0f), 
@@ -74,6 +75,7 @@ enum nodeTags
                ccp(self.contentSize.width, self.bottomFrameMargin));
     ccDrawLine(ccp(0.0f, self.contentSize.height - self.topFrameMargin), 
                ccp(self.contentSize.width, self.contentSize.height - self.topFrameMargin));
+     */
 }
 
 @end

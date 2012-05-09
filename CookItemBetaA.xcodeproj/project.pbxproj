@@ -129,6 +129,7 @@
 		3508777E1556608C0020E844 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3508777D1556608C0020E844 /* HUDLayer.m */; };
 		3508778715567CF80020E844 /* bitmapfont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 3508778515567CF80020E844 /* bitmapfont.fnt */; };
 		3508778815567CF80020E844 /* bitmapfont.png in Resources */ = {isa = PBXBuildFile; fileRef = 3508778615567CF80020E844 /* bitmapfont.png */; };
+		350FDC6515597DE9004711A2 /* CookingScene.png in Resources */ = {isa = PBXBuildFile; fileRef = 350FDC6415597DE9004711A2 /* CookingScene.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -376,6 +377,7 @@
 		3508777D1556608C0020E844 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
 		3508778515567CF80020E844 /* bitmapfont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bitmapfont.fnt; path = Resources/bitmapfont.fnt; sourceTree = "<group>"; };
 		3508778615567CF80020E844 /* bitmapfont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bitmapfont.png; path = Resources/bitmapfont.png; sourceTree = "<group>"; };
+		350FDC6415597DE9004711A2 /* CookingScene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CookingScene.png; path = Resources/CookingScene.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +455,7 @@
 		35087610155533850020E844 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				350FDC6415597DE9004711A2 /* CookingScene.png */,
 				3508778515567CF80020E844 /* bitmapfont.fnt */,
 				3508778615567CF80020E844 /* bitmapfont.png */,
 				35087772155534390020E844 /* garlic.png */,
@@ -848,6 +851,7 @@
 				35087775155534390020E844 /* knife.png in Resources */,
 				3508778715567CF80020E844 /* bitmapfont.fnt in Resources */,
 				3508778815567CF80020E844 /* bitmapfont.png in Resources */,
+				350FDC6515597DE9004711A2 /* CookingScene.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,6 +1014,7 @@
 				GCC_PREFIX_HEADER = CookItemBetaA/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = CookItemBetaA/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1025,6 +1030,7 @@
 				GCC_PREFIX_HEADER = CookItemBetaA/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = CookItemBetaA/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
@@ -1051,6 +1057,7 @@
 				3508776F155533880020E844 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

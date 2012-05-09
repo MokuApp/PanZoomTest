@@ -38,13 +38,21 @@ static GameScene* instanceOfGameScene;
 	if( (self=[super init])) {
         instanceOfGameScene = self;
         _hud = hud;
-
+/*
         CCLayerColor* whiteLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
         [self addChild:whiteLayer z:-1];
-	
+*/	
         _panZoomLayer = [[CCLayerPanZoom node] retain];
         [self addChild:_panZoomLayer z:0 tag:kPanzoomTag];
         _panZoomLayer.delegate = self;
+        
+        
+        CCSprite *background = [CCSprite spriteWithFile: @"CookingScene.png"];
+        background.anchorPoint = ccp(0,0);
+//		background.scale = CC_CONTENT_SCALE_FACTOR();
+        [_panZoomLayer addChild: background 
+                             z :0 
+                            tag: kBackgroundTag];
         
         
         CCSprite *garlic = [CCSprite spriteWithFile: @"garlic.png"];
@@ -60,7 +68,7 @@ static GameScene* instanceOfGameScene;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CGRect boundingRect = CGRectMake(0, 0, 0, 0);
-        boundingRect.size = winSize;
+        boundingRect.size = CGSizeMake(1024, 768);
         [_panZoomLayer setContentSize:boundingRect.size];
         
         _panZoomLayer.anchorPoint = ccp(0.5f, 0.5f);
@@ -69,12 +77,12 @@ static GameScene* instanceOfGameScene;
         _panZoomLayer.panBoundsRect = CGRectMake(0, 0, winSize.width, winSize.height);
         
         
-        garlic.position =  ccp(boundingRect.size.width * 0.7f, boundingRect.size.height * 0.5f - 56);
-        knife.position =  ccp(boundingRect.size.width * 0.4f, boundingRect.size.height * 0.5f - 56);
+        garlic.position =  ccp(boundingRect.size.width * 0.2f, boundingRect.size.height * 0.5f + 220);
+        knife.position =  ccp(boundingRect.size.width * 0.25f, boundingRect.size.height * 0.5f + 70);
         
         
-        _panZoomLayer.minScale = 1.0f;// * winSize.width;
-        _panZoomLayer.maxScale = 2.0f;// * winSize.width;
+        _panZoomLayer.minScale = 0.5f;// * winSize.width;
+        _panZoomLayer.maxScale = 1.0f;// * winSize.width;
     
     
     }
