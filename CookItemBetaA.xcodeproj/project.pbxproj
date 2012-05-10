@@ -130,6 +130,9 @@
 		3508778715567CF80020E844 /* bitmapfont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 3508778515567CF80020E844 /* bitmapfont.fnt */; };
 		3508778815567CF80020E844 /* bitmapfont.png in Resources */ = {isa = PBXBuildFile; fileRef = 3508778615567CF80020E844 /* bitmapfont.png */; };
 		350FDC6515597DE9004711A2 /* CookingScene.png in Resources */ = {isa = PBXBuildFile; fileRef = 350FDC6415597DE9004711A2 /* CookingScene.png */; };
+		350FDC69155AB52E004711A2 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC68155AB52E004711A2 /* Item.m */; };
+		350FDC6D155AB599004711A2 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC6C155AB598004711A2 /* Command.m */; };
+		350FDC70155ADCC8004711A2 /* Garlic.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC6F155ADCC8004711A2 /* Garlic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +381,12 @@
 		3508778515567CF80020E844 /* bitmapfont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bitmapfont.fnt; path = Resources/bitmapfont.fnt; sourceTree = "<group>"; };
 		3508778615567CF80020E844 /* bitmapfont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bitmapfont.png; path = Resources/bitmapfont.png; sourceTree = "<group>"; };
 		350FDC6415597DE9004711A2 /* CookingScene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CookingScene.png; path = Resources/CookingScene.png; sourceTree = "<group>"; };
+		350FDC67155AB52E004711A2 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		350FDC68155AB52E004711A2 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		350FDC6B155AB598004711A2 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		350FDC6C155AB598004711A2 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
+		350FDC6E155ADCC8004711A2 /* Garlic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garlic.h; sourceTree = "<group>"; };
+		350FDC6F155ADCC8004711A2 /* Garlic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garlic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +454,7 @@
 				3508776A155533880020E844 /* GameConfig.h */,
 				3508777C1556608B0020E844 /* HUDLayer.h */,
 				3508777D1556608C0020E844 /* HUDLayer.m */,
+				350FDC6A155AB542004711A2 /* Item */,
 				35087610155533850020E844 /* Resources */,
 				35087624155533850020E844 /* libs */,
 				3508775D155533880020E844 /* Supporting Files */,
@@ -786,6 +796,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		350FDC6A155AB542004711A2 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				350FDC67155AB52E004711A2 /* Item.h */,
+				350FDC68155AB52E004711A2 /* Item.m */,
+				350FDC6B155AB598004711A2 /* Command.h */,
+				350FDC6C155AB598004711A2 /* Command.m */,
+				350FDC6E155ADCC8004711A2 /* Garlic.h */,
+				350FDC6F155ADCC8004711A2 /* Garlic.m */,
+			);
+			name = Item;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -962,6 +985,9 @@
 				35087778155534DB0020E844 /* GameScene.m in Sources */,
 				3508777B155535500020E844 /* CCLayerPanZoom.m in Sources */,
 				3508777E1556608C0020E844 /* HUDLayer.m in Sources */,
+				350FDC69155AB52E004711A2 /* Item.m in Sources */,
+				350FDC6D155AB599004711A2 /* Command.m in Sources */,
+				350FDC70155ADCC8004711A2 /* Garlic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

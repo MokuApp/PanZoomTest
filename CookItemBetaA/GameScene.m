@@ -8,7 +8,8 @@
 
 #import "GameScene.h"
 #import "HUDLayer.h"
-
+#import "Garlic.h"
+#import "Command.h"
 
 @implementation GameScene
 
@@ -54,9 +55,15 @@ static GameScene* instanceOfGameScene;
                              z :0 
                             tag: kBackgroundTag];
         
-        
+        /*
         CCSprite *garlic = [CCSprite spriteWithFile: @"garlic.png"];
 		[_panZoomLayer addChild: garlic 
+                              z: 1 
+                            tag: kGarlicTag];
+        */
+        Command* com = [Command alloc];
+        Garlic *garlic = [Garlic initItem:com];
+        [_panZoomLayer addChild:garlic
                               z: 1 
                             tag: kGarlicTag];
         
@@ -122,26 +129,34 @@ static GameScene* instanceOfGameScene;
     {
         _selectedObject = _knife;
     }
-    
+    /*
     _garlic.color = ccWHITE;
     _knife.color = ccWHITE;
     _selectedObject.color = ccRED;
+     */
         
 }
 
--(void) droppedObjectAtPoint: (CGRect) rect
+-(void) droppedObjectRect: (CGRect) rect
 {
     _droppedObject = nil;
     
+    CCSprite *_garlic = (CCSprite *)[_panZoomLayer getChildByTag: kGarlicTag];
     CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
     
-    if ( CGRectIntersectsRect( [_knife boundingBox], rect))
+    if ( !(_selectedObject == _garlic) && CGRectIntersectsRect( [_garlic boundingBox], rect))
+    {
+        _droppedObject = _garlic;
+    }
+    
+    if ( !(_selectedObject == _knife) && CGRectIntersectsRect( [_knife boundingBox], rect))
     {
         _droppedObject = _knife;
     }
     
+    _garlic.color = ccWHITE;
     _knife.color = ccWHITE;
-    _droppedObject.color = ccBLUE;
+    _droppedObject.color = ccRED;
     
 }
 
@@ -152,11 +167,11 @@ static GameScene* instanceOfGameScene;
 {
     
     _selectedObject.position = newPos;
-    [self droppedObjectAtPoint:[_selectedObject boundingBox]];
+    [self droppedObjectRect:[_selectedObject boundingBox]];
     if (_droppedObject) {
         if (![_hud isCall]) {
-            CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
-            [_hud showMenuList:_knife.position];            
+//            CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
+//            [_hud showMenuList:_knife.position];            
         }
 
     }
@@ -168,7 +183,6 @@ static GameScene* instanceOfGameScene;
              tapCount: (NSUInteger) tapCount
 {
     [self selectObjectAtPoint: point];
-//    [self droppedObjectAtPoint:[_selectedObject boundingBox]];
 }
 
 - (void) layerPanZoom: (CCLayerPanZoom *) sender touchMoveBeganAtPosition: (CGPoint) aPoint
@@ -192,7 +206,7 @@ static GameScene* instanceOfGameScene;
         
         
     }
-//    [self droppedObjectAtPoint:[_selectedObject boundingBox]];
+
 }
 
 
