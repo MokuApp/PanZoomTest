@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CCLayerPanZoom.h"
+#import "Garlic.h"
+#import "Knife.h"
+#import "Cut.h"
 
 @class HUDLayer;
 
@@ -28,8 +31,8 @@ enum layerTags
 @interface GameScene : CCLayer <CCLayerPanZoomClickDelegate> {
     
     CCLayerPanZoom *_panZoomLayer;
-    CCSprite *_selectedObject;
-    CCSprite *_droppedObject;
+    Item *_selectedObject;
+    Item *_droppedObject;
     HUDLayer *_hud;
 }
 

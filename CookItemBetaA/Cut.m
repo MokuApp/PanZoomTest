@@ -1,22 +1,21 @@
 //
-//  Command.m
+//  Cut.m
 //  CookItemBetaA
 //
-//  Created by tedant on 12/05/09.
+//  Created by tedant on 12/05/10.
 //  Copyright 2012 MokuApp. All rights reserved.
 //
 
-#import "Command.h"
+#import "Cut.h"
 
 
-@implementation Command
+@implementation Cut
 
-@synthesize name;
 
 -(id)init{
     
 	if( (self=[super init])) {
-        name = @"command";
+        name = @"Cut";
     }
     return self;
 }
@@ -24,6 +23,7 @@
 
 -(void)execute
 {
+    [self.parent setTextureRect:CGRectMake(0, 92, 96, 70)];
     
 }
 

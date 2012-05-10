@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Item.h"
+
 @class GameScene;
 
 enum menuTags
@@ -21,7 +23,7 @@ enum menuTags
 }
 
 -(BOOL)isCall;
--(void)showMenuList:(CGPoint)pos;
--(void)hideMenuList:(id)sender;
+-(void)showMenuList:(Item*)selectedObj dropped:(Item*)droppedObj;
+-(void)hideMenuList;
 
 @end

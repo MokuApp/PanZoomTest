@@ -133,6 +133,8 @@
 		350FDC69155AB52E004711A2 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC68155AB52E004711A2 /* Item.m */; };
 		350FDC6D155AB599004711A2 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC6C155AB598004711A2 /* Command.m */; };
 		350FDC70155ADCC8004711A2 /* Garlic.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC6F155ADCC8004711A2 /* Garlic.m */; };
+		350FDC73155BB266004711A2 /* Cut.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC72155BB266004711A2 /* Cut.m */; };
+		350FDC76155BC206004711A2 /* Knife.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC75155BC206004711A2 /* Knife.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -387,6 +389,10 @@
 		350FDC6C155AB598004711A2 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
 		350FDC6E155ADCC8004711A2 /* Garlic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Garlic.h; sourceTree = "<group>"; };
 		350FDC6F155ADCC8004711A2 /* Garlic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Garlic.m; sourceTree = "<group>"; };
+		350FDC71155BB265004711A2 /* Cut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cut.h; sourceTree = "<group>"; };
+		350FDC72155BB266004711A2 /* Cut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cut.m; sourceTree = "<group>"; };
+		350FDC74155BC206004711A2 /* Knife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Knife.h; sourceTree = "<group>"; };
+		350FDC75155BC206004711A2 /* Knife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Knife.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +460,7 @@
 				3508776A155533880020E844 /* GameConfig.h */,
 				3508777C1556608B0020E844 /* HUDLayer.h */,
 				3508777D1556608C0020E844 /* HUDLayer.m */,
+				350FDC77155BC219004711A2 /* Command */,
 				350FDC6A155AB542004711A2 /* Item */,
 				35087610155533850020E844 /* Resources */,
 				35087624155533850020E844 /* libs */,
@@ -801,12 +808,23 @@
 			children = (
 				350FDC67155AB52E004711A2 /* Item.h */,
 				350FDC68155AB52E004711A2 /* Item.m */,
-				350FDC6B155AB598004711A2 /* Command.h */,
-				350FDC6C155AB598004711A2 /* Command.m */,
 				350FDC6E155ADCC8004711A2 /* Garlic.h */,
 				350FDC6F155ADCC8004711A2 /* Garlic.m */,
+				350FDC74155BC206004711A2 /* Knife.h */,
+				350FDC75155BC206004711A2 /* Knife.m */,
 			);
 			name = Item;
+			sourceTree = "<group>";
+		};
+		350FDC77155BC219004711A2 /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				350FDC6B155AB598004711A2 /* Command.h */,
+				350FDC6C155AB598004711A2 /* Command.m */,
+				350FDC71155BB265004711A2 /* Cut.h */,
+				350FDC72155BB266004711A2 /* Cut.m */,
+			);
+			name = Command;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -988,6 +1006,8 @@
 				350FDC69155AB52E004711A2 /* Item.m in Sources */,
 				350FDC6D155AB599004711A2 /* Command.m in Sources */,
 				350FDC70155ADCC8004711A2 /* Garlic.m in Sources */,
+				350FDC73155BB266004711A2 /* Cut.m in Sources */,
+				350FDC76155BC206004711A2 /* Knife.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,8 +15,13 @@
     
     Command* _command;
     
+    
 }
 
 +(id)initItem:(Command*)command;
+
+-(void)execute:(id)sender;
+
+-(NSString*)commandName;
 
 @end

@@ -13,4 +13,16 @@
 @implementation Item
 
 
+
+-(void)execute:(id)sender
+{
+    [_command execute];
+    
+}
+
+-(NSString*)commandName
+{
+    return _command.name;
+}
+
 @end

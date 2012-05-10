@@ -8,8 +8,7 @@
 
 #import "GameScene.h"
 #import "HUDLayer.h"
-#import "Garlic.h"
-#import "Command.h"
+
 
 @implementation GameScene
 
@@ -61,13 +60,12 @@ static GameScene* instanceOfGameScene;
                               z: 1 
                             tag: kGarlicTag];
         */
-        Command* com = [Command alloc];
-        Garlic *garlic = [Garlic initItem:com];
+        Garlic *garlic = [Garlic initItem:[[Cut alloc ]init]];
         [_panZoomLayer addChild:garlic
                               z: 1 
                             tag: kGarlicTag];
         
-        CCSprite *knife = [CCSprite spriteWithFile: @"knife.png"];
+        Knife *knife = [Knife initItem:[[Command alloc] init]];
 		[_panZoomLayer addChild: knife 
                               z: 1 
                             tag: kKnifeTag];
@@ -115,8 +113,8 @@ static GameScene* instanceOfGameScene;
 {
     _selectedObject = nil;
     
-    CCSprite *_garlic = (CCSprite *)[_panZoomLayer getChildByTag: kGarlicTag];
-    CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
+    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: kGarlicTag];
+    Item *_knife = (Item *)[_panZoomLayer getChildByTag: kKnifeTag];
     
     
     // Select new test object.
@@ -141,8 +139,8 @@ static GameScene* instanceOfGameScene;
 {
     _droppedObject = nil;
     
-    CCSprite *_garlic = (CCSprite *)[_panZoomLayer getChildByTag: kGarlicTag];
-    CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
+    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: kGarlicTag];
+    Item *_knife = (Item *)[_panZoomLayer getChildByTag: kKnifeTag];
     
     if ( !(_selectedObject == _garlic) && CGRectIntersectsRect( [_garlic boundingBox], rect))
     {
@@ -170,12 +168,14 @@ static GameScene* instanceOfGameScene;
     [self droppedObjectRect:[_selectedObject boundingBox]];
     if (_droppedObject) {
         if (![_hud isCall]) {
-//            CCSprite *_knife = (CCSprite *)[_panZoomLayer getChildByTag: kKnifeTag];
-//            [_hud showMenuList:_knife.position];            
+            
+            
+            [_hud showMenuList:_selectedObject dropped:_droppedObject];
         }
-
     }
-
+    else{
+        [_hud hideMenuList];
+    }
 }
 
 - (void) layerPanZoom: (CCLayerPanZoom *) sender 
@@ -204,7 +204,7 @@ static GameScene* instanceOfGameScene;
                                               (anchorPointInPoints.y - anchorShift.y) / height );
         _selectedObject.position = aPoint;
         
-        
+
     }
 
 }

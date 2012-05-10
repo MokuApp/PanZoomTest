@@ -11,6 +11,14 @@
 
 @interface Command : CCNode {
     
+    NSString* name;
+    
 }
+
+
+@property (assign) NSString* name;
+
+-(id)init;
+-(void)execute;
 
 @end
