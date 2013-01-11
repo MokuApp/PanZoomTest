@@ -21,8 +21,9 @@
 -(id)initWithKnifeImage:(Command*)command
 {
     if ((self = [super initWithFile:@"knife.png"])) {
-        _command = command;
-        [self addChild:_command]; 
+//        _command = command;
+//        [self addChild:_command]; 
+        [self addChild:command z:1 tag:CommandTag]; 
     }
     
     return self;

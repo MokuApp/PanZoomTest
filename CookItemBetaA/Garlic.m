@@ -21,8 +21,8 @@
 -(id)initWithGarlicImage:(Command*)command
 {
     if ((self = [super initWithFile:@"garlic.png" rect:CGRectMake(0, 0, 96, 92)])) {
-        _command = command;
-        [self addChild:_command]; 
+//        _command = command;
+        [self addChild:command z:1 tag:CommandTag]; 
     }
     
     return self;

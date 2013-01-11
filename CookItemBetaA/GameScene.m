@@ -156,6 +156,7 @@ static GameScene* instanceOfGameScene;
     _knife.color = ccWHITE;
     _droppedObject.color = ccRED;
     
+    //_selectedObject = nil;
 }
 
 #pragma mark CCLayerPanZoom Delegate Methods
@@ -185,14 +186,17 @@ static GameScene* instanceOfGameScene;
     [self selectObjectAtPoint: point];
 }
 
-- (void) layerPanZoom: (CCLayerPanZoom *) sender touchMoveBeganAtPosition: (CGPoint) aPoint
+- (void) layerPanZoom: (CCLayerPanZoom *) sender touchMoveBeganAtPosition: (CGPoint) aPoint movePosition:(CGPoint)mPoint
 {
     
     [self selectObjectAtPoint: aPoint];
     
+    CCLOG(@"selected obj? %@",_selectedObject);
+    
     // Change anchorPoint & position of selectedTestObject to avoid jerky movement.
     if (_selectedObject)
     {
+        sender.selectObject = YES;
         CGFloat width = _selectedObject.contentSize.width;
         CGFloat height = _selectedObject.contentSize.height;
         
@@ -205,6 +209,9 @@ static GameScene* instanceOfGameScene;
         _selectedObject.position = aPoint;
         
 
+    }else{
+        sender.selectObject = NO;
+//        sender.position = mPoint;            
     }
 
 }

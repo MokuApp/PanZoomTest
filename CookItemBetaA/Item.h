@@ -11,9 +11,16 @@
 
 @class Command;
 
+
+enum CommandTags
+{
+    CommandTag,
+};
+
+
 @interface Item : CCSprite {
     
-    Command* _command;
+//    Command* _command;
     
     
 }

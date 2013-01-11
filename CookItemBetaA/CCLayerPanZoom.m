@@ -126,7 +126,7 @@ typedef enum
 
 @implementation CCLayerPanZoom
 
-@synthesize maxTouchDistanceToClick = _maxTouchDistanceToClick, 
+@synthesize maxTouchDistanceToClick = _maxTouchDistanceToClick, selectObject,
             delegate = _delegate, touches = _touches, touchDistance = _touchDistance, 
             minSpeed = _minSpeed, maxSpeed = _maxSpeed, topFrameMargin = _topFrameMargin, 
             bottomFrameMargin = _bottomFrameMargin, leftFrameMargin = _leftFrameMargin,
@@ -155,6 +155,8 @@ typedef enum
 {
     return _minScale;
 }
+
+
 
 @dynamic rubberEffectRatio;
 - (void) setRubberEffectRatio:(CGFloat)rubberEffectRatio
@@ -204,6 +206,7 @@ typedef enum
         self.rubberEffectRecoveryTime = 0.2f;
         _rubberEffectRecovering = NO;
         _rubberEffectZooming = NO;
+        selectObject = NO;
 	}	
 	return self;
 }
@@ -297,12 +300,20 @@ typedef enum
         // Inform delegate about starting updating touch position, if click isn't possible.
         if (self.mode == kCCLayerPanZoomModeFrame)
         {
+            
             if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
             {
                 [self.delegate layerPanZoom: self 
                    touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
+                 
                 _touchMoveBegan = YES;
             }
+            if (!selectObject) {
+                self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
+                                    self.position.y + curTouchPosition.y - prevTouchPosition.y);
+                
+            }
+            
         }
     }	
 }
@@ -374,7 +385,7 @@ typedef enum
         CGPoint curPos = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
         
         // Scroll if finger in the scroll area near edge.
-        if ([self frameEdgeWithPoint: curPos] != kCCLayerPanZoomFrameEdgeNone)
+        if (([self frameEdgeWithPoint: curPos] != kCCLayerPanZoomFrameEdgeNone) && selectObject)
         {
             self.position = ccp(self.position.x + dt * [self horSpeedWithPosition: curPos], 
                                 self.position.y + dt * [self vertSpeedWithPosition: curPos]);

@@ -95,9 +95,12 @@ typedef enum
     CGFloat _rubberEffectRatio;
     BOOL _rubberEffectRecovering;
     BOOL _rubberEffectZooming;
+    BOOL selectObject;
 }
 
 #pragma mark Zoom Options
+
+@property(nonatomic) BOOL selectObject;
 
 /** The maximum scale level, will change scale if needed automatically.
  * Default is 3.0f */

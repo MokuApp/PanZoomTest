@@ -16,13 +16,14 @@
 
 -(void)execute:(id)sender
 {
-    [_command execute];
+    //[_command execute];
+    [[self getChildByTag:CommandTag] execute];
     
 }
 
 -(NSString*)commandName
 {
-    return _command.name;
+    return [[self getChildByTag:CommandTag] name];
 }
 
 @end
