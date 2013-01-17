@@ -24,6 +24,7 @@
 //        _command = command;
 //        [self addChild:_command]; 
         [self addChild:command z:1 tag:CommandTag]; 
+        tag = KNIFE_TAG;
     }
     
     return self;

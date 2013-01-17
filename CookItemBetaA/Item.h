@@ -22,8 +22,10 @@ enum CommandTags
     
 //    Command* _command;
     
-    
+    int tag;
 }
+
+@property(readonly) int tag;
 
 +(id)initItem:(Command*)command;
 

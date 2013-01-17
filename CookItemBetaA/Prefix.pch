@@ -11,4 +11,12 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
+
+
+#define BG_TAG 100
+#define GARLIC_TAG 101
+#define KNIFE_TAG 102
+
+
 #endif

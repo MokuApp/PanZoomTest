@@ -38,10 +38,8 @@ static GameScene* instanceOfGameScene;
 	if( (self=[super init])) {
         instanceOfGameScene = self;
         _hud = hud;
-/*
-        CCLayerColor* whiteLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
-        [self addChild:whiteLayer z:-1];
-*/	
+        
+        
         _panZoomLayer = [[CCLayerPanZoom node] retain];
         [self addChild:_panZoomLayer z:0 tag:kPanzoomTag];
         _panZoomLayer.delegate = self;
@@ -49,27 +47,10 @@ static GameScene* instanceOfGameScene;
         
         CCSprite *background = [CCSprite spriteWithFile: @"CookingScene.png"];
         background.anchorPoint = ccp(0,0);
-//		background.scale = CC_CONTENT_SCALE_FACTOR();
+
         [_panZoomLayer addChild: background 
                              z :0 
-                            tag: kBackgroundTag];
-        
-        /*
-        CCSprite *garlic = [CCSprite spriteWithFile: @"garlic.png"];
-		[_panZoomLayer addChild: garlic 
-                              z: 1 
-                            tag: kGarlicTag];
-        */
-        Garlic *garlic = [Garlic initItem:[[Cut alloc ]init]];
-        [_panZoomLayer addChild:garlic
-                              z: 1 
-                            tag: kGarlicTag];
-        
-        Knife *knife = [Knife initItem:[[Command alloc] init]];
-		[_panZoomLayer addChild: knife 
-                              z: 1 
-                            tag: kKnifeTag];
-        _selectedObject = garlic;
+                            tag: BG_TAG];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CGRect boundingRect = CGRectMake(0, 0, 0, 0);
@@ -82,12 +63,35 @@ static GameScene* instanceOfGameScene;
         _panZoomLayer.panBoundsRect = CGRectMake(0, 0, winSize.width, winSize.height);
         
         
-        garlic.position =  ccp(boundingRect.size.width * 0.2f, boundingRect.size.height * 0.5f + 220);
-        knife.position =  ccp(boundingRect.size.width * 0.25f, boundingRect.size.height * 0.5f + 70);
         
         
         _panZoomLayer.minScale = 0.5f;// * winSize.width;
         _panZoomLayer.maxScale = 1.0f;// * winSize.width;
+        
+        items = [NSArray arrayWithObjects:[Garlic initItem:[[Cut alloc ]init]],[Knife initItem:[[Command alloc] init]], nil];
+        
+        for (Item* tmpItem in items) {
+            [_panZoomLayer addChild:tmpItem z:1 tag:tmpItem.tag];
+            tmpItem.position =  ccp(boundingRect.size.width * 0.2f, boundingRect.size.height * 0.5f + 220);
+        }
+        
+        /*
+        Garlic *garlic = [Garlic initItem:[[Cut alloc ]init]];
+        [_panZoomLayer addChild:garlic
+                              z: 1 
+                            tag: kGarlicTag];
+        
+        Knife *knife = [Knife initItem:[[Command alloc] init]];
+		[_panZoomLayer addChild: knife 
+                              z: 1 
+                            tag: kKnifeTag];
+        _selectedObject = nil;
+         garlic.position =  ccp(boundingRect.size.width * 0.2f, boundingRect.size.height * 0.5f + 220);
+         knife.position =  ccp(boundingRect.size.width * 0.25f, boundingRect.size.height * 0.5f + 70);
+
+        */
+        
+
     
     
     }
@@ -113,8 +117,8 @@ static GameScene* instanceOfGameScene;
 {
     _selectedObject = nil;
     
-    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: kGarlicTag];
-    Item *_knife = (Item *)[_panZoomLayer getChildByTag: kKnifeTag];
+    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: GARLIC_TAG];
+    Item *_knife = (Item *)[_panZoomLayer getChildByTag: KNIFE_TAG];
     
     
     // Select new test object.
@@ -127,11 +131,7 @@ static GameScene* instanceOfGameScene;
     {
         _selectedObject = _knife;
     }
-    /*
-    _garlic.color = ccWHITE;
-    _knife.color = ccWHITE;
-    _selectedObject.color = ccRED;
-     */
+
         
 }
 
@@ -139,8 +139,8 @@ static GameScene* instanceOfGameScene;
 {
     _droppedObject = nil;
     
-    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: kGarlicTag];
-    Item *_knife = (Item *)[_panZoomLayer getChildByTag: kKnifeTag];
+    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: GARLIC_TAG];
+    Item *_knife = (Item *)[_panZoomLayer getChildByTag: KNIFE_TAG];
     
     if ( !(_selectedObject == _garlic) && CGRectIntersectsRect( [_garlic boundingBox], rect))
     {
@@ -156,7 +156,6 @@ static GameScene* instanceOfGameScene;
     _knife.color = ccWHITE;
     _droppedObject.color = ccRED;
     
-    //_selectedObject = nil;
 }
 
 #pragma mark CCLayerPanZoom Delegate Methods
@@ -186,7 +185,7 @@ static GameScene* instanceOfGameScene;
     [self selectObjectAtPoint: point];
 }
 
-- (void) layerPanZoom: (CCLayerPanZoom *) sender touchMoveBeganAtPosition: (CGPoint) aPoint movePosition:(CGPoint)mPoint
+- (void) layerPanZoom: (CCLayerPanZoom *) sender touchMoveBeganAtPosition: (CGPoint) aPoint 
 {
     
     [self selectObjectAtPoint: aPoint];
@@ -210,8 +209,7 @@ static GameScene* instanceOfGameScene;
         
 
     }else{
-        sender.selectObject = NO;
-//        sender.position = mPoint;            
+        sender.selectObject = NO;         
     }
 
 }

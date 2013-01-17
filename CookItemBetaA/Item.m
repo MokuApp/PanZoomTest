@@ -12,7 +12,7 @@
 
 @implementation Item
 
-
+@synthesize tag;
 
 -(void)execute:(id)sender
 {

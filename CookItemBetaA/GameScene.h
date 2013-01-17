@@ -14,14 +14,14 @@
 #import "Cut.h"
 
 @class HUDLayer;
-
+/*
 enum nodeTags
 {
 	kBackgroundTag,
     kGarlicTag,
     kKnifeTag,
 };
-
+*/
 enum layerTags
 {
     kPanzoomTag,
@@ -34,6 +34,7 @@ enum layerTags
     Item *_selectedObject;
     Item *_droppedObject;
     HUDLayer *_hud;
+    NSMutableArray *items;
 }
 
 
