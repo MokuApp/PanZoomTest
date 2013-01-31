@@ -18,12 +18,26 @@ enum menuTags
 };
 
 @interface HUDLayer : CCLayer {
-    BOOL _call;
-    
+//    BOOL _call;
+    BOOL isCall;
+    BOOL menuIsHidden;
 }
 
--(BOOL)isCall;
+@property(nonatomic, retain) CCSprite *tabUpSprite;
+@property(nonatomic, retain) CCSprite *tabSprite;
+@property(nonatomic, retain) CCSprite *tabDownSprite;
+
+
+@property(nonatomic) BOOL isCall;
+
+
+//-(BOOL)isCall;
 -(void)showMenuList:(Item*)selectedObj dropped:(Item*)droppedObj;
 -(void)hideMenuList;
+
+
+-(void) handleInitialTouch:(CGPoint)p;
+
+-(CGRect) tabRect;
 
 @end

@@ -12,32 +12,45 @@
 
 @implementation GameScene
 
-static GameScene* instanceOfGameScene;
+@synthesize items;
+
+static GameScene* instanceOfGameScene = nil;
 
 +(GameScene*)sharedGameScene
 {
+/*
     NSAssert(instanceOfGameScene != nil, @"GameScen instance not yet initialized");
     return instanceOfGameScene;
-
+*/
+    if (instanceOfGameScene == nil) {
+        instanceOfGameScene = [GameScene alloc];
+        [instanceOfGameScene init];
+    }
+    
+    return instanceOfGameScene;
 }
 
 +(CCScene *) scene
 {
 	CCScene *scene = [CCScene node];
-	HUDLayer *hud = [HUDLayer node];
-    [scene addChild:hud z:10];
+//	HUDLayer *hud = [HUDLayer node];
+ //   [scene addChild:hud z:10];
     
-    GameScene *layer = [[[GameScene alloc] initWithHUD:hud] autorelease];
+ //   GameScene *layer = [[[GameScene alloc] initWithHUD:hud] autorelease];
+    GameScene* layer = [GameScene node];
+    
 	[scene addChild: layer];
     
 	return scene;
 }
 
--(id) initWithHUD:(HUDLayer*)hud
+//-(id) initWithHUD:(HUDLayer*)hud
+-(id) init
 {
 	if( (self=[super init])) {
         instanceOfGameScene = self;
-        _hud = hud;
+        _hud = [HUDLayer node];
+        [self addChild:_hud z:10];
         
         
         _panZoomLayer = [[CCLayerPanZoom node] retain];
@@ -64,35 +77,16 @@ static GameScene* instanceOfGameScene;
         
         
         
+        _panZoomLayer.minScale = 0.5f;
+        _panZoomLayer.maxScale = 1.0f;
         
-        _panZoomLayer.minScale = 0.5f;// * winSize.width;
-        _panZoomLayer.maxScale = 1.0f;// * winSize.width;
+        self.items = [NSArray arrayWithObjects:[Garlic initItem:[[Cut alloc ]init]],[Knife initItem:[[Command alloc] init]], nil];
         
-        items = [NSArray arrayWithObjects:[Garlic initItem:[[Cut alloc ]init]],[Knife initItem:[[Command alloc] init]], nil];
-        
-        for (Item* tmpItem in items) {
+        for (Item* tmpItem in self.items) {
             [_panZoomLayer addChild:tmpItem z:1 tag:tmpItem.tag];
             tmpItem.position =  ccp(boundingRect.size.width * 0.2f, boundingRect.size.height * 0.5f + 220);
         }
         
-        /*
-        Garlic *garlic = [Garlic initItem:[[Cut alloc ]init]];
-        [_panZoomLayer addChild:garlic
-                              z: 1 
-                            tag: kGarlicTag];
-        
-        Knife *knife = [Knife initItem:[[Command alloc] init]];
-		[_panZoomLayer addChild: knife 
-                              z: 1 
-                            tag: kKnifeTag];
-        _selectedObject = nil;
-         garlic.position =  ccp(boundingRect.size.width * 0.2f, boundingRect.size.height * 0.5f + 220);
-         knife.position =  ccp(boundingRect.size.width * 0.25f, boundingRect.size.height * 0.5f + 70);
-
-        */
-        
-
-    
     
     }
     
@@ -117,21 +111,16 @@ static GameScene* instanceOfGameScene;
 {
     _selectedObject = nil;
     
-    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: GARLIC_TAG];
-    Item *_knife = (Item *)[_panZoomLayer getChildByTag: KNIFE_TAG];
-    
-    
-    // Select new test object.
-    if ( CGRectContainsPoint( [_garlic boundingBox], point))
-    {
-        _selectedObject = _garlic;
-    }
-    
-    if ( CGRectContainsPoint( [_knife boundingBox], point))
-    {
-        _selectedObject = _knife;
-    }
 
+    for (Item* tmpItem in self.items) {
+        if (CGRectContainsPoint([tmpItem boundingBox], point)) {
+            _selectedObject = tmpItem;
+            _selectedObject.color = ccBLUE;
+        }else{
+            tmpItem.color = ccWHITE;
+        }
+
+    }
         
 }
 
@@ -139,22 +128,22 @@ static GameScene* instanceOfGameScene;
 {
     _droppedObject = nil;
     
-    Item *_garlic = (Item *)[_panZoomLayer getChildByTag: GARLIC_TAG];
-    Item *_knife = (Item *)[_panZoomLayer getChildByTag: KNIFE_TAG];
-    
-    if ( !(_selectedObject == _garlic) && CGRectIntersectsRect( [_garlic boundingBox], rect))
-    {
-        _droppedObject = _garlic;
+
+    for (Item* tmpItem in self.items) {
+        if ( !(_selectedObject == tmpItem) && CGRectIntersectsRect( [tmpItem boundingBox], rect)) {
+            _droppedObject = tmpItem;
+            _droppedObject.color = ccRED;
+        }else{
+            tmpItem.color = ccWHITE;
+        }
     }
     
-    if ( !(_selectedObject == _knife) && CGRectIntersectsRect( [_knife boundingBox], rect))
-    {
-        _droppedObject = _knife;
-    }
     
-    _garlic.color = ccWHITE;
-    _knife.color = ccWHITE;
-    _droppedObject.color = ccRED;
+}
+
+-(void)handleInitialTouch:(CGPoint)p{
+    CGPoint pointHandle = [self convertToNodeSpace: [_panZoomLayer convertToWorldSpace: p] ];
+    [_hud handleInitialTouch:pointHandle];
     
 }
 
@@ -167,7 +156,7 @@ static GameScene* instanceOfGameScene;
     _selectedObject.position = newPos;
     [self droppedObjectRect:[_selectedObject boundingBox]];
     if (_droppedObject) {
-        if (![_hud isCall]) {
+        if (!_hud.isCall) {
             
             
             [_hud showMenuList:_selectedObject dropped:_droppedObject];
@@ -182,15 +171,24 @@ static GameScene* instanceOfGameScene;
 	   clickedAtPoint: (CGPoint) point
              tapCount: (NSUInteger) tapCount
 {
+
+    [self handleInitialTouch:point];
     [self selectObjectAtPoint: point];
 }
 
 - (void) layerPanZoom: (CCLayerPanZoom *) sender touchMoveBeganAtPosition: (CGPoint) aPoint 
 {
+
+
+    [self handleInitialTouch:aPoint];
+    
     
     [self selectObjectAtPoint: aPoint];
     
     CCLOG(@"selected obj? %@",_selectedObject);
+    
+    
+
     
     // Change anchorPoint & position of selectedTestObject to avoid jerky movement.
     if (_selectedObject)

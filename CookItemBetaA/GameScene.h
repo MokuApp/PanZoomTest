@@ -14,14 +14,8 @@
 #import "Cut.h"
 
 @class HUDLayer;
-/*
-enum nodeTags
-{
-	kBackgroundTag,
-    kGarlicTag,
-    kKnifeTag,
-};
-*/
+
+
 enum layerTags
 {
     kPanzoomTag,
@@ -38,10 +32,14 @@ enum layerTags
 }
 
 
+@property(nonatomic,retain) NSMutableArray *items;
+
 +(CCScene *) scene;
 +(GameScene*) sharedGameScene;
 
--(id) initWithHUD:(HUDLayer*)hud;
+//-(id) initWithHUD:(HUDLayer*)hud;
+
+-(id) init;
 
 
 @end

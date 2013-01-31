@@ -14,9 +14,23 @@
 
 
 
+
+
+//hud
+#define HUD_HEIGHT 57
+
+#define HUD_Z_INDEX 21
+
 #define BG_TAG 100
 #define GARLIC_TAG 101
 #define KNIFE_TAG 102
+
+
+
+
+
+
+#define spriteWithRect(__name__, __rect__) [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:[[CCTextureCache sharedTextureCache] addImage:__name__] rect:__rect__]]
 
 
 #endif

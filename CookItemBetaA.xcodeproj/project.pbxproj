@@ -135,6 +135,8 @@
 		350FDC70155ADCC8004711A2 /* Garlic.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC6F155ADCC8004711A2 /* Garlic.m */; };
 		350FDC73155BB266004711A2 /* Cut.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC72155BB266004711A2 /* Cut.m */; };
 		350FDC76155BC206004711A2 /* Knife.m in Sources */ = {isa = PBXBuildFile; fileRef = 350FDC75155BC206004711A2 /* Knife.m */; };
+		35913F5816B963FB000401E0 /* hud.png in Resources */ = {isa = PBXBuildFile; fileRef = 35913F5716B963FB000401E0 /* hud.png */; };
+		35913F5A16BA6934000401E0 /* verticalHUD.png in Resources */ = {isa = PBXBuildFile; fileRef = 35913F5916BA6934000401E0 /* verticalHUD.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -393,6 +395,8 @@
 		350FDC72155BB266004711A2 /* Cut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cut.m; sourceTree = "<group>"; };
 		350FDC74155BC206004711A2 /* Knife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Knife.h; sourceTree = "<group>"; };
 		350FDC75155BC206004711A2 /* Knife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Knife.m; sourceTree = "<group>"; };
+		35913F5716B963FB000401E0 /* hud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hud.png; path = Resources/hud.png; sourceTree = "<group>"; };
+		35913F5916BA6934000401E0 /* verticalHUD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = verticalHUD.png; path = Resources/verticalHUD.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +476,8 @@
 		35087610155533850020E844 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35913F5916BA6934000401E0 /* verticalHUD.png */,
+				35913F5716B963FB000401E0 /* hud.png */,
 				350FDC6415597DE9004711A2 /* CookingScene.png */,
 				3508778515567CF80020E844 /* bitmapfont.fnt */,
 				3508778615567CF80020E844 /* bitmapfont.png */,
@@ -893,6 +899,8 @@
 				3508778715567CF80020E844 /* bitmapfont.fnt in Resources */,
 				3508778815567CF80020E844 /* bitmapfont.png in Resources */,
 				350FDC6515597DE9004711A2 /* CookingScene.png in Resources */,
+				35913F5816B963FB000401E0 /* hud.png in Resources */,
+				35913F5A16BA6934000401E0 /* verticalHUD.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
